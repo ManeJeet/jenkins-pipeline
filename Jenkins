@@ -1,0 +1,65 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building the code using Maven'
+                // Add build commands here
+            }
+        }
+        
+        stage('Unit and Integration Tests') {
+            steps {
+                echo 'Running unit tests with JUnit and integration tests with Selenium'
+                // Add test commands here
+            }
+        }
+        
+        stage('Code Analysis') {
+            steps {
+                echo 'Analyzing code with SonarQube'
+                // Add code analysis commands here
+            }
+        }
+        
+        stage('Security Scan') {
+            steps {
+                echo 'Performing security scan with OWASP ZAP'
+                // Add security scan commands here
+            }
+        }
+        
+        stage('Deploy to Staging') {
+            steps {
+                echo 'Deploying to AWS EC2 staging server'
+                // Add staging deployment commands here
+            }
+        }
+        
+        stage('Integration Tests on Staging') {
+            steps {
+                echo 'Running integration tests on staging environment'
+                // Add staging integration test commands here
+            }
+        }
+        
+        stage('Deploy to Production') {
+            steps {
+                echo 'Deploying to AWS EC2 production server'
+                // Add production deployment commands here
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo 'Pipeline succeeded! Sending email notification.'
+            // Add email notification for success
+        }
+        failure {
+            echo 'Pipeline failed! Sending email notification.'
+            // Add email notification for failure
+        }
+    }
+}
