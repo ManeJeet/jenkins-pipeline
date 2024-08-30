@@ -18,25 +18,25 @@ pipeline {
                 sh 'mvn integration-test'
                 // JUnit is used for unit testing, Selenium for integration testing
             }
-post {
-        success {
-            emailext (
-                subject: "Pipeline Successful",
-                body: "The pipeline has completed successfully. \n\nCheck the attached log for details.",
-                to: "jeetmane3801@gmail.com",
-                attachLog: true
-            )
-        }
-        failure {
-            emailext (
-                subject: "Pipeline Failed",
-                body: "The pipeline has failed. \n\nCheck the attached log for details.",
-                to: "jeetmane3801@gmail.com",
-                attachLog: true
-            )
-        }
-        }
-        
+            post {
+                success {
+                    emailext (
+                    subject: "Pipeline Successful",
+                    body: "The pipeline has completed successfully. \n\nCheck the attached log for details.",
+                    to: "jeetmane3801@gmail.com",
+                    attachLog: true
+                    )
+                }
+                failure {
+                    emailext (
+                    subject: "Pipeline Failed",
+                    body: "The pipeline has failed. \n\nCheck the attached log for details.",
+                    to: "jeetmane3801@gmail.com",
+                    attachLog: true
+                    )
+                }
+            }
+        } 
         stage('Code Analysis') {
             steps {
                 echo 'Analyzing code with SonarQube'
