@@ -17,10 +17,15 @@ pipeline {
                 echo 'mvn integration-test'
             }
             post{
-                always{
-                    mail to: 'jeetmane3801@gmail.com'
-                    subject: 'hello jeet'
+                success{
+                    mail to: 'jeetmane3801@gmail.com',
+                    subject: 'hello jeet, test success',
                     body: 'hi my name is jeet please reply.'
+                }
+                failure{
+                    mail to:'jeetmane3801@gmail.com',
+                    subject:'hello jeet, test failure',
+                    body:'hi my name is jeet condolences.'
                 }
             }
         } 
@@ -35,6 +40,18 @@ pipeline {
             steps {
                 echo 'Performing security scan with OWASP Dependency-Check'
                 echo 'mvn org.owasp:dependency-check-maven:check'
+            }
+            post{
+                success{
+                    mail to: 'jeetmane3801@gmail.com',
+                    subject: 'hello jeet, scan success',
+                    body: 'hi my name is jeet please reply.'
+                }
+                failure{
+                    mail to:'jeetmane3801@gmail.com',
+                    subject:'hello jeet, scan failure',
+                    body:'hi my name is jeet condolences.'
+                }
             }
         }    
         
