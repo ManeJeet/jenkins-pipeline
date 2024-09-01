@@ -17,9 +17,6 @@ pipeline {
                 echo 'mvn integration-test'
             }
             post{
-                emailext{
-                    attachlog:true
-                }
                 success{
                     mail to: 'jeetmane3801@gmail.com',
                     subject: 'Test results',
