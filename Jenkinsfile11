@@ -20,8 +20,9 @@ pipeline {
                 success{
                     mail to: 'jeetmane3801@gmail.com',
                     subject: 'Test results',
-                    body: 'Dear Client, your Test Result was success.'
-                }
+                    body: 'Dear Client, your Test Result was success.',
+                    attachlog = true
+                    }
                 failure{
                     mail to:'jeetmane3801@gmail.com',
                     subject:'Test results',
@@ -46,11 +47,12 @@ pipeline {
                     mail to: 'jeetmane3801@gmail.com',
                     subject: 'security scan',
                     body: 'Dear Client your security scan was success.',
+                    attachlog = true
                 }
                 failure{
                     mail to:'jeetmane3801@gmail.com',
                     subject:'security scan',
-                    body:'Dear Client your security scan was fail, condolences.',
+                    body:'Dear Client your security scan was fail, condolences.'
                 }
             }
         }    
