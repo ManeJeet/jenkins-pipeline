@@ -51,7 +51,8 @@ pipeline {
                 failure{
                     mail to:'jeetmane3801@gmail.com',
                     subject:'security scan',
-                    body:'Dear Client your security scan was fail, condolences.'
+                    body:'Dear Client your security scan was fail, condolences.',
+                    attachlog=true
                 }
             }
         }    
