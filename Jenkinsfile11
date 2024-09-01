@@ -17,11 +17,13 @@ pipeline {
                 echo 'mvn integration-test'
             }
             post{
+                emailext{
+                    attachlog:true
+                }
                 success{
                     mail to: 'jeetmane3801@gmail.com',
                     subject: 'Test results',
-                    body: 'Dear Client, your Test Result was success.',
-                    attachlog to:true
+                    body: 'Dear Client, your Test Result was success.'
                     }
                 failure{
                     mail to:'jeetmane3801@gmail.com',
@@ -46,8 +48,7 @@ pipeline {
                 success{
                     mail to: 'jeetmane3801@gmail.com',
                     subject: 'security scan',
-                    body: 'Dear Client your security scan was success.',
-                    attachlog to:true
+                    body: 'Dear Client your security scan was success.'
                 }
                 failure{
                     mail to:'jeetmane3801@gmail.com',
