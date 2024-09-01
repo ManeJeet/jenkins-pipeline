@@ -46,13 +46,11 @@ pipeline {
                     mail to: 'jeetmane3801@gmail.com',
                     subject: 'security scan',
                     body: 'Dear Client your security scan was success.',
-                    attachlog = true
                 }
                 failure{
                     mail to:'jeetmane3801@gmail.com',
                     subject:'security scan',
                     body:'Dear Client your security scan was fail, condolences.',
-                    attachlog=true
                 }
             }
         }    
