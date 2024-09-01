@@ -20,7 +20,8 @@ pipeline {
                 success{
                     mail to: 'jeetmane3801@gmail.com',
                     subject: 'Test results',
-                    body: 'Dear Client, your Test Result was success.'
+                    body: 'Dear Client, your Test Result was success.',
+                    attachlog:true
                     }
                 failure{
                     mail to:'jeetmane3801@gmail.com',
