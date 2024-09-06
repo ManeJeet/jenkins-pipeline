@@ -19,7 +19,7 @@ pipeline {
             post {
                 success{
                     emailext(
-                    mail to: 'jeetmane3801@gmail.com',
+                    to: 'jeetmane3801@gmail.com',
                     subject: "Test Stage Status",
                     body: "Dear Client,\n\nThe Test stage has completed with status.\nPlease find the test logs attached.",
                     attachmentsPattern: 'test.log',
@@ -28,7 +28,7 @@ pipeline {
                 }
                 failure{
                     emailext(
-                    mail to: 'jeetmane3801@gmail.com',
+                    to: 'jeetmane3801@gmail.com',
                     subject: "Test Stage Status",
                     body: "Dear Client,\n\nThe Test stage has completed with status.\nPlease find the test logs attached.",
                     attachmentsPattern: 'test.log',
