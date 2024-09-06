@@ -53,7 +53,7 @@ pipeline {
             post {
                 success{
                     emailext(
-                    mail to: 'jeetmane3801@gmail.com',
+                    to: 'jeetmane3801@gmail.com',
                     subject: "Security Scan Status",
                     body: "Dear Client,\n\nThe Security Scan stage has completed with status.\nPlease find the security scan logs attached.",        
                     attachmentsPattern: 'security.log',
@@ -62,7 +62,7 @@ pipeline {
                 }
                 failure{
                     emailext(
-                    mail to: 'jeetmane3801@gmail.com',
+                    to: 'jeetmane3801@gmail.com',
                     subject: "Security Scan Status",
                     body: "Dear Client,\n\nThe Security Scan stage has completed with status.\nPlease find the security scan logs attached.",        
                     attachmentsPattern: 'security.log',
