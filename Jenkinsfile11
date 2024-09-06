@@ -18,11 +18,11 @@ pipeline {
             }
             post {
                 success {
-                            subject: "Test Stage Status",
-                            body: "Dear Client,\n\nThe Test stage has completed with status.\nPlease find the test logs attached.",
-                            to: 'jeetmane3801@gmail.com',
-                            attachmentsPattern: 'test.log',
-                            attachLog: true
+                    mail to: 'jeetmane3801@gmail.com',
+                    subject: "Test Stage Status",
+                    body: "Dear Client,\n\nThe Test stage has completed with status.\nPlease find the test logs attached.",
+                    attachmentsPattern: 'test.log',
+                    attachLog: true
                     }
                 }
             } 
@@ -41,11 +41,11 @@ pipeline {
             }
             post {
                 success {
-                            subject: "Security Scan Status",
-                            body: "Dear Client,\n\nThe Security Scan stage has completed with status.\nPlease find the security scan logs attached.",
-                            to: 'jeetmane3801@gmail.com',
-                            attachmentsPattern: 'security.log',
-                            attachLog: true
+                    mail to: 'jeetmane3801@gmail.com',
+                    subject: "Security Scan Status",
+                    body: "Dear Client,\n\nThe Security Scan stage has completed with status.\nPlease find the security scan logs attached.",        
+                    attachmentsPattern: 'security.log',
+                    attachLog: true
                     }
                 }
             }    
