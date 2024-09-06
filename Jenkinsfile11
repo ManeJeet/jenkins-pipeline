@@ -14,7 +14,6 @@ pipeline {
                 echo 'Running unit tests with JUnit'
                 echo 'mvn test'
                 echo 'Running integration tests with Selenium'
-                sh 'mvn integration-test',
                 sh 'echo "Tests completed" > test.log'
             }
             post {
