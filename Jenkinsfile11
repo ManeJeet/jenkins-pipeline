@@ -17,14 +17,12 @@ pipeline {
                 sh 'echo "Tests completed" > test.log'
             }
             post {
-                always {
-                        emailext (
+                success {
                             subject: "Test Stage Status",
                             body: "Dear Client,\n\nThe Test stage has completed with status.\nPlease find the test logs attached.",
                             to: 'jeetmane3801@gmail.com',
                             attachmentsPattern: 'test.log',
                             attachLog: true
-                        )
                     }
                 }
             } 
@@ -42,14 +40,12 @@ pipeline {
                 sh 'echo "Security scan completed" > security.log'
             }
             post {
-                always {
-                        emailext (
+                success {
                             subject: "Security Scan Status",
                             body: "Dear Client,\n\nThe Security Scan stage has completed with status.\nPlease find the security scan logs attached.",
                             to: 'jeetmane3801@gmail.com',
                             attachmentsPattern: 'security.log',
                             attachLog: true
-                        )
                     }
                 }
             }    
