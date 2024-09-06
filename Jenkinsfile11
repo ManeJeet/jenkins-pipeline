@@ -17,14 +17,19 @@ pipeline {
                 sh 'echo "Tests completed" > test.log'
             }
             post {
-                always {
-                    archiveArtifacts artifacts: 'test.log', fingerprint: true
-                    script {
-                        def status = currentBuild.resultIsBetterOrEqualTo('SUCCESS') ? 'SUCCESS' : 'FAILURE'
-                        mail to: 'jeetmane3801@gmail.com',
-                             subject: "Test Stage Status: ${status}",
-                             body: "Dear Client,\n\nThe Test stage has completed with status: ${status}.\nPlease check the Jenkins job for detailed logs."
-                    }
+                success{
+                    mail to: 'jeetmane3801@gmail.com',
+                    subject: "Test Stage Status",
+                    body: "Dear Client,\n\nThe Test stage has completed with status.\nPlease find the test logs attached.",
+                    attachmentsPattern: 'test.log',
+                    attachLog: true
+                }
+                failure{
+                    mail to: 'jeetmane3801@gmail.com',
+                    subject: "Test Stage Status",
+                    body: "Dear Client,\n\nThe Test stage has completed with status.\nPlease find the test logs attached.",
+                    attachmentsPattern: 'test.log',
+                    attachLog: true
                 }
             }
         } 
@@ -42,17 +47,22 @@ pipeline {
                 sh 'echo "Security scan completed" > security.log'
             }
             post {
-                always {
-                    archiveArtifacts artifacts: 'security.log', fingerprint: true
-                    script {
-                        def status = currentBuild.resultIsBetterOrEqualTo('SUCCESS') ? 'SUCCESS' : 'FAILURE'
-                        mail to: 'jeetmane3801@gmail.com',
-                             subject: "Security Scan Status: ${status}",
-                             body: "Dear Client,\n\nThe Security Scan stage has completed with status: ${status}.\nPlease check the Jenkins job for detailed logs."
-                    }
+                success{
+                    mail to: 'jeetmane3801@gmail.com',
+                    subject: "Security Scan Status",
+                    body: "Dear Client,\n\nThe Security Scan stage has completed with status.\nPlease find the security scan logs attached.",        
+                    attachmentsPattern: 'security.log',
+                    attachLog: true
+                }
+                failure{
+                    mail to: 'jeetmane3801@gmail.com',
+                    subject: "Security Scan Status",
+                    body: "Dear Client,\n\nThe Security Scan stage has completed with status.\nPlease find the security scan logs attached.",        
+                    attachmentsPattern: 'security.log',
+                    attachLog: true
                 }
             }
-        }
+        }    
         
         stage('Deploy to Staging') {
             steps {
