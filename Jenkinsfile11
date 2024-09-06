@@ -14,21 +14,21 @@ pipeline {
                 echo 'Running unit tests with JUnit'
                 echo 'mvn test'
                 echo 'Running integration tests with Selenium'
-                echo 'mvn integration-test'
+                echo 'mvn integration-test',
+                sh 'echo "Tests completed" > test.log'
             }
-            post{
-                success{
-                    mail to: 'jeetmane3801@gmail.com',
-                    subject: 'Test results',
-                    body: 'Dear Client, your Test Result was success.'
+            post {
+                always {
+                        emailext (
+                            subject: "Test Stage Status",
+                            body: "Dear Client,\n\nThe Test stage has completed with status.\nPlease find the test logs attached.",
+                            to: 'jeetmane3801@gmail.com',
+                            attachmentsPattern: 'test.log',
+                            attachLog: true
+                        )
                     }
-                failure{
-                    mail to:'jeetmane3801@gmail.com',
-                    subject:'Test results',
-                    body:'Dear Client, your Test Result was fail, condolences.'
                 }
-            }
-        } 
+            } 
         stage('Code Analysis') {
             steps {
                 echo 'Analyzing code with SonarQube'
@@ -40,20 +40,20 @@ pipeline {
             steps {
                 echo 'Performing security scan with OWASP Dependency-Check'
                 echo 'mvn org.owasp:dependency-check-maven:check'
+                sh 'echo "Security scan completed" > security.log'
             }
-            post{
-                success{
-                    mail to: 'jeetmane3801@gmail.com',
-                    subject: 'security scan',
-                    body: 'Dear Client your security scan was success.'
+            post {
+                always {
+                        emailext (
+                            subject: "Security Scan Status",
+                            body: "Dear Client,\n\nThe Security Scan stage has completed with status.\nPlease find the security scan logs attached.",
+                            to: 'jeetmane3801@gmail.com',
+                            attachmentsPattern: 'security.log',
+                            attachLog: true
+                        )
+                    }
                 }
-                failure{
-                    mail to:'jeetmane3801@gmail.com',
-                    subject:'security scan',
-                    body:'Dear Client your security scan was fail, condolences.'
-                }
-            }
-        }    
+            }    
         
         stage('Deploy to Staging') {
             steps {
