@@ -1,17 +1,16 @@
 pipeline {
    agent any
-​
-    ​environment {
-        ​​DIRECTORY_PATH = "/"
-        ​​TESTING_ENVIRONMENT = "test"
-​       ​PRODUCTION_ENVIRONMENT = "Jeet Manoj Mane"
-​   ​}
+    environment {
+        DIRECTORY_PATH = "/"
+        TESTING_ENVIRONMENT = "test"
+        PRODUCTION_ENVIRONMENT = "Jeet Manoj Mane"
+    }
  
    stages {
        stage('Build') {
            steps {
                 echo 'Building the code using Maven'
-                ​​​​echo 'mvn clean package'
+                echo 'mvn clean package'
            }
        }
        stage('Unit and Integration Tests') {
@@ -30,7 +29,7 @@ pipeline {
        }
    }
        }
-​       ​stage('Code Analysis') {
+        stage('Code Analysis') {
            steps {
                echo 'Analyzing code with SonarQube'
                 echo 'mvn sonar:sonar'
@@ -62,7 +61,7 @@ pipeline {
                echo 'Integration test running on staging server...'
            }
        }
-        ​​stage('Deploy to Production') {
+        stage('Deploy to Production') {
            steps {
                echo 'Deploying to AWS EC2 production server'
                 echo 'ansible-playbook -i inventory/production deploy.yml'
