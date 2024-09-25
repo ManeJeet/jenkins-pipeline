@@ -8,7 +8,6 @@ pipeline {
                 echo 'mvn clean package'
             }
         }
-        
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit tests with JUnit'
@@ -23,6 +22,7 @@ pipeline {
                     body: "Dear Client,\n\nThe Test stage has completed with status.\nPlease find the test logs attached."
                 }
             } 
+        }
         stage('Code Analysis') {
             steps {
                 echo 'Analyzing code with SonarQube'
@@ -68,5 +68,3 @@ pipeline {
         }
     }
 } 
-
-}
