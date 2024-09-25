@@ -18,7 +18,7 @@ pipeline {
             post {
                 success{
                     emailext attachLog: true
-                    to: 'jeetmane3801@gmail.com',
+                    to: "jeetmane3801@gmail.com",
                     subject: "Test Stage Status",
                     body: "Dear Client,\n\nThe Test stage has completed with status.\nPlease find the test logs attached."
                 }
@@ -39,7 +39,7 @@ pipeline {
             post {
                 success{
                     emailext attachLog: true,
-                    mail to: 'jeetmane3801@gmail.com',
+                    to: "jeetmane3801@gmail.com",
                     subject: "Security Scan Status",
                     body: "Dear Client,\n\nThe Security Scan stage has completed with status.\nPlease find the security scan logs attached."
                     }
