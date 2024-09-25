@@ -14,12 +14,11 @@ pipeline {
                 echo 'Running unit tests with JUnit'
                 echo 'mvn test'
                 echo 'Running integration tests with Selenium'
-                sh 'echo "Tests completed" > test.log'
             }
             post {
                 success{
                     emailext attachLog: true
-                    mail to: 'jeetmane3801@gmail.com',
+                    to: 'jeetmane3801@gmail.com',
                     subject: "Test Stage Status",
                     body: "Dear Client,\n\nThe Test stage has completed with status.\nPlease find the test logs attached."
                 }
@@ -70,3 +69,4 @@ pipeline {
     }
 } 
 
+}
