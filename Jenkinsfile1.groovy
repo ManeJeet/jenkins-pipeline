@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the code using Maven'
+                echo 'maven build'
             }
         }
         stage('Unit and Integration Tests') {
