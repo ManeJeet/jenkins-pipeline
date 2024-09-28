@@ -11,7 +11,6 @@ pipeline {
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit tests with JUnit'
-                echo 'mvn test'
                 echo 'Running integration tests with Selenium'
             }
             post {
